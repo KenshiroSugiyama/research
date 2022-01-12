@@ -5,7 +5,8 @@ import warnings
 warnings.simplefilter('ignore', category=RuntimeWarning)  # RuntimeWarningを無視扱いに設定
 import re
 import csv
-
+import time
+import matplotlib.pyplot as plt
 
 def TDMAsolver(a, b, c, d):
     nf = len(d) # number of equations
@@ -24,6 +25,7 @@ def TDMAsolver(a, b, c, d):
     return xc
 
 def main():
+    
     n=1000
 
     #配列作成
@@ -92,6 +94,7 @@ def main():
     
     maxerr=1.0
     cb = 0
+    start_time = time.perf_counter()
     while maxerr>1*10**(-6):
         #------------  gradient	-------------
 
@@ -162,16 +165,25 @@ def main():
         maxerr=max(np.max(err_u[1:n+1]),np.max(err_c[1:n+1]))
         print(maxerr,cm[0])
 
+    end_time = time.perf_counter()
+    elapsed_time = end_time - start_time
+    print(elapsed_time)
+
     #---------ファイルに出力---------------------------------------------------------------
-    outfile = open('output.csv','w', newline='')
-    writer = csv.writer(outfile)
-    writer.writerow(['um[i]', 'zm[i]'])
+    # outfile = open('output.csv','w', newline='')
+    # writer = csv.writer(outfile)
+    # writer.writerow(['um[i]', 'zm[i]'])
 
-    for i in range(0,n+1):
-        writer.writerow([um[i], zm[i]])
+    # for i in range(0,n+1):
+    #     writer.writerow([um[i], zm[i]])
 
-    outfile.close()
+    # outfile.close()
 
+    
+    #----------グラフ表示------------------------------------------------------------------
+    # plt.plot(um,zm,'b:')
+    plt.plot(cm,zm,'k:')
+    plt.show()
     
 
 
