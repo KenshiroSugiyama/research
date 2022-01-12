@@ -181,9 +181,19 @@ def main():
 
     
     #----------グラフ表示------------------------------------------------------------------
-    # plt.plot(um,zm,'b:')
-    plt.plot(cm,zm,'k:')
+    plt.title('um-zm')
+    plt.xlabel('um[cm]')
+    plt.ylabel('zm[cm]')
+    plt.plot(um,zm,'b:')
     plt.show()
+
+    # plt.title('cm-zm')
+    # plt.xlabel('cm[cm]')
+    # plt.ylabel('zm[cm]')
+    # plt.xlim(0,0.05)
+    # plt.plot(cm,zm,'k:')
+    # plt.show()
+    # 
     
 
 
